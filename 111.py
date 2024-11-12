@@ -1,14 +1,10 @@
-import math
-n = int(input())
-if n <= 0:
-    print('Число должно быть больше нуля')
-else:
-    c = 0
-    f = 0
-    while n > 0:
-        t = n % 10
-        f += t
-        c += 1
-        n //= 10
-    print('Количество цифр' , c )
-    print('Сумма цифр', f)
+text = input("Введите текст:")
+words = text.split()
+count = 0
+for word in words:
+    for letter in word:
+        if letter.isalpha():
+            if word.count(letter) > 1:
+                count += 1
+                break
+print('Количество слов с удвоенными согласными:', count)

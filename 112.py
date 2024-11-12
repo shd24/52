@@ -1,18 +1,11 @@
-while True:
-    while True:
-        try: epsilon = float(input('Введите точность (e):'))
-        except ValueError:
-            print('Введены некорректные данные')
-        else: break
-    if epsilon <= 0:
-        print('Введено некорретное число')
-    else: break
-sum_series = 0
-n = 1
-while True:
-    t = 1 / (n**2)
-    if abs(t) < epsilon:
-        break
-    sum_series += t
-    n += 1
-print ('Приблизительная сумма ряда' , sum_series)
+input_string = input('Введите строку:')
+first_space_index = input_string.find(' ')
+if first_space_index != -1:
+    second_space_index = input_string.find(' ', first_space_index + 1)
+    if second_space_index != -1:
+        substring = input_string[first_space_index + 1:second_space_index]
+        print("Подстрока между первым и вторым пробелом:", substring)
+    else:
+        print("")
+else:
+    print("Ошибка: строка не содержит пробела")
