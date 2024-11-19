@@ -1,11 +1,8 @@
-input_string = input('Введите строку:')
-first_space_index = input_string.find(' ')
-if first_space_index != -1:
-    second_space_index = input_string.find(' ', first_space_index + 1)
-    if second_space_index != -1:
-        substring = input_string[first_space_index + 1:second_space_index]
-        print("Подстрока между первым и вторым пробелом:", substring)
-    else:
-        print("")
+text = input("Введите строку (с пробелами): ")
+f = text.find(' ')
+s = text.find(' ', f + 1)
+if s != -1:
+   substring = text[f + 1:s]
 else:
-    print("Ошибка: строка не содержит пробела")
+   substring = ''
+print("Подстрока между первым и вторым пробелом:", substring)
