@@ -1,24 +1,27 @@
-d = input("Введите элементы списка через пробел: ")
-elements = d.split()
-elements = [int(x) for x in elements]
-max_index = -1
-min_index = -1
-for i in range(len(elements)):
-    if max_index == -1 or abs(elements[i]) > abs(elements[max_index]):
-        max_index = i
-    if min_index == -1 or abs(elements[i]) < abs(elements[min_index]):
-        min_index = i
-startindex = min(max_index, min_index) + 1
-endindex = max(max_index, min_index)
-product = 1
-if startindex < endindex:
-    for i in range(startindex, endindex):
-       product *= elements[i]
-else:
-    product = 0
-for i in range(len(elements)):
-     for j in range(0, len(elements) - i - 1):
-        if elements[j] < elements[j + 1]:
-            elements[j], elements[j + 1] = elements[j + 1], elements[j]
-print("Произведение элементов между максимальным и минимальным по модулю:", product)
-print("Упорядоченный список по убыванию:", elements)
+import random
+def get_integer_input(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            if value > 0:
+                return value
+            else:
+                print("Пожалуйста, введите положительное число.")
+        except ValueError:
+            print("Пожалуйста, введите целое число.")
+def random_set(size, range_min, range_max):
+    random_set = set()
+    while len(random_set) < size:
+        random_set.add(random.randint(range_min, range_max))
+    return random_set
+def main():
+    size = get_integer_input("Введите размер каждого множества (максимум 10000): ")
+    if size > 10000:
+        print("Размер множества не должен превышать 10000.")
+        return
+    set1 = random_set(size, 1, 10000)
+    set2 = random_set(size, 1, 10000)
+    i = sorted(set1.intersection(set2))
+    print("Числа, которые находятся как в первом, так и во втором множестве (в порядке возрастания):")
+    print(i)
+main()
