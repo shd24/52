@@ -1,50 +1,23 @@
-def get_integer_input(prompt):
+def IncTime(H, M, S, T):
+    S += T
+    M += S // 60
+    S = S % 60
+    H += M // 60
+    M = M % 60
+    H = H % 24
+    return H, M, S
+def get_input(p):
     while True:
         try:
-            value = int(input(prompt))
+            value = int(input(p))
+            if value < 0:
+                raise ValueError("Значение должно быть положительным.")
             return value
-        except ValueError:
-            print("Пожалуйста, введите целое число.")
-
-def create_matrix(size):
-    matrix = []
-    for i in range(size):
-        r = []
-        for j in range(size):
-            value = get_integer_input(f"Введите элемент для позиции ({i + 1}, {j + 1}): ")
-            r.append(value)
-        matrix.append(r)
-    return matrix
-
-def is_local_minimum(matrix, i, j):
-    value = matrix[i][j]
-    n = []
-    if i > 0:
-        n.append(matrix[i - 1][j])
-    if i < len(matrix) - 1:
-        n.append(matrix[i + 1][j])
-    if j > 0:
-        n.append(matrix[i][j - 1])
-    if j < len(matrix) - 1:
-        n.append(matrix[i][j + 1])
-    for neighbor in n:
-        if value >= neighbor:
-            return False
-    return True
-def count_local_minima(matrix):
-    count = 0
-    size = len(matrix)
-    for i in range(size):
-        for j in range(size):
-            if is_local_minimum(matrix, i, j):
-                count += 1
-    return count
-def main():
-    size = 10
-    matrix = create_matrix(size)
-    print("Ваша матрица:")
-    for row in matrix:
-        print(' '.join(map(str, row)))
-    local_minima_count = count_local_minima(matrix)
-    print(f"Количество локальных минимумов в матрице: {local_minima_count}")
-main()
+        except ValueError as e:
+            print(f"Ошибка ввода: {e}. Пожалуйста, попробуйте еще раз.")
+H = get_input("Введите часы (0-23): ")
+M = get_input("Введите минуты (0-59): ")
+S = get_input("Введите секунды (0-59): ")
+T = get_input("Введите количество секунд для увеличения времени: ")
+new_H, new_M, new_S = IncTime(H, M, S, T)
+print(f"Новое время: {new_H} часов, {new_M} минут, {new_S} секунд")

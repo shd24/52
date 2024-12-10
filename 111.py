@@ -1,36 +1,24 @@
-def get_integer_input(prompt):
-    while True:
-        try:
-            value = int(input(prompt))
-            return value
-        except ValueError:
-            print("Пожалуйста, введите целое число.")
-
-def create_matrix(size):
-    matrix = []
-    for i in range(size):
-        row = []
-        for j in range(size):
-            value = get_integer_input(f"Введите элемент для позиции ({i + 1}, {j + 1}): ")
-            row.append(value)
-        matrix.append(row)
-    return matrix
-def sort(matrix):
-    size = len(matrix)
-    for i in range(size):
-        for j in range(i + 1, size):
-            if matrix[0][j] > matrix[0][i]:
-                for k in range(size):
-                    matrix[k][i], matrix[k][j] = matrix[k][j], matrix[k][i]
-def print_matrix(matrix):
-    for row in matrix:
-        print(' '.join(map(str, row)))
-def main():
-    M = get_integer_input("Введите размер матрицы M (целое число): ")
-    matrix = create_matrix(M)
-    print("Исходная матрица:")
-    print_matrix(matrix)
-    sort(matrix)
-    print("Отсортированная матрица:")
-    print_matrix(matrix)
-main()
+def PowerA3(A):
+    B = A ** 3
+    return B
+def is_valid_input(value):
+    try:
+        num = float(value)
+        return True if num >= 0 else False
+    except ValueError:
+        return False
+n = []
+print("Введите 5 положительных чисел для вычисления их кубов:")
+while len(n) < 5:
+    user_input = input(f"Введите число {len(n) + 1}: ")
+    if is_valid_input(user_input):
+        n.append(float(user_input))
+    else:
+        print("Ошибка ввода! Пожалуйста, введите положительное вещественное число.")
+c = []
+for number in n:
+    cube = PowerA3(number)
+    c.append(cube)
+print("Кубы введенных чисел:")
+for i in range(5):
+    print(f"{n[i]} в кубе равно {c[i]}")
